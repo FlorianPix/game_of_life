@@ -11,7 +11,7 @@ class Grid{
      grid = new Cell[height][width];
      for (int i = 0; i < height; i++){
        for (int j = 0; j < width; j++){
-         grid[i][j] = new Cell();
+         grid[i][j] = new Cell(0);
        }
      }
    }
@@ -23,7 +23,7 @@ class Grid{
      int left = Math.floorMod((x - 1), this.width);
      int midX = x;
      int right = Math.floorMod((x + 1), this.width);
-     
+
      int up = Math.floorMod((y + 1), this.height);
      int midY = y;
      int down = Math.floorMod((y - 1), this.height);
