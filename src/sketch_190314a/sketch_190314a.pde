@@ -30,12 +30,16 @@ void draw(){
     if (mousePressed && (mouseButton == LEFT)){
       x = (int) Math.floor(mouseX);
       y = (int) Math.floor(mouseY);
-      this.grid.grid[x/resolution][y/resolution].revive();
+      if (x/resolution < this.columns && y/resolution < this.rows){
+        this.grid.grid[x/resolution][y/resolution].revive();
+      }
     }
     if (mousePressed && (mouseButton == RIGHT)){
       x = (int) Math.floor(mouseX);
       y = (int) Math.floor(mouseY);
-      this.grid.grid[x/resolution][y/resolution].kill();
+      if (x/resolution < this.columns && y/resolution < this.rows){
+        this.grid.grid[x/resolution][y/resolution].kill();
+      }
     }
     for (int i = 0; i < columns; i++){
       for (int j = 0; j < rows; j++){
