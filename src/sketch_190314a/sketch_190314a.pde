@@ -1,12 +1,12 @@
 import java.util.concurrent.TimeUnit;
 
-int rows = 100;
-int columns = 100;
-int resolution = 10;
-int w = 10;
+int rows = 50;
+int columns = 50;
+int resolution = 20;
+int w = 20;
 int c = 3;
 int x, y;
-long delay = 0;
+long delay = 60;
 boolean set = true;
 Grid grid, next;
 
@@ -16,33 +16,35 @@ void setup(){
 }
 
 void draw(){
-  background(0, 102, 102);
+  background(0, 100, 100);
   fill(153, 0, 51);
   if (keyPressed){
-      if (set){
+      if (set && (key == 's' || key == 'S')){
         set = false;
-        try        
-        {
-          TimeUnit.SECONDS.sleep(1);
-        }catch(InterruptedException ex) {}
       }
-      else{
+      if (!set && (key == 'd' || key == 'D')){
         set = true;
-        try        
-        {
-          TimeUnit.SECONDS.sleep(1);
-        }catch(InterruptedException ex) {}
       }
     }
   if (set){
-    if (mousePressed){
+    if (mousePressed && (mouseButton == LEFT)){
       x = (int) Math.floor(mouseX);
       y = (int) Math.floor(mouseY);
       this.grid.grid[x/resolution][y/resolution].revive();
     }
+    if (mousePressed && (mouseButton == RIGHT)){
+      x = (int) Math.floor(mouseX);
+      y = (int) Math.floor(mouseY);
+      this.grid.grid[x/resolution][y/resolution].kill();
+    }
     for (int i = 0; i < columns; i++){
       for (int j = 0; j < rows; j++){
         if (this.grid.grid[i][j].getStatus() == 1) {
+          fill(153, 0, 51);
+          rect(i * resolution, j * resolution, w, w, c);
+        }
+        else{
+          fill(0, 0, 0);
           rect(i * resolution, j * resolution, w, w, c);
         }
       }
