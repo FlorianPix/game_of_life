@@ -8,6 +8,7 @@ int c = 3;
 int x, y;
 long delay = 60;
 boolean set = true;
+boolean killAll = false;
 Grid grid, next;
 
 void setup(){
@@ -25,7 +26,14 @@ void draw(){
       if (!set && (key == 'd' || key == 'D')){
         set = true;
       }
+      if (!set && (key == 'r' || key == 'R')){
+        killAll = true;
+      }
     }
+  if (killAll){
+    this.grid = new Grid(rows, columns);
+    killAll = false;
+  }
   if (set){
     if (mousePressed && (mouseButton == LEFT)){
       x = (int) Math.floor(mouseX);
